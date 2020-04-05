@@ -204,6 +204,7 @@ function startGame(){
       }).then((result) => {
         if (result.value) {
             isPlaying = true;
+            wordInputs.value = '';
             init()
         }
       })
