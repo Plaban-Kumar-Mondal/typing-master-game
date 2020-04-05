@@ -1,4 +1,4 @@
-window.addEventListener('load', init);
+window.addEventListener('load', startGame);
 
 // Global Variables
 
@@ -16,6 +16,7 @@ const currentLevel = levels.easy;
 let time = currentLevel;
 let score = 0;
 let isPlaying;
+let overMessage;
 
 // DOM Elements
 const wordInputs = document.querySelector('#word-input');
@@ -187,9 +188,24 @@ const words = [
     'apple'
 ]
 
+// starting game
+function startGame(){
+    Swal.fire({
+        title: 'Welcome',
+        text: "Start the game!",
+        // icon: 'warning',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        // cancelButtonColor: '#d33',
+        confirmButtonText: 'START'
+      }).then((result) => {
+        if (result.value) {
+          init()
+        }
+      })
+}
 // Initialize game
 function init(){
-    Swal.fire('Welcome!' ,'First you may see the game over, but type the given word and the game will restart')
     // Show number of seconds in UI
     seconds.innerHTML = currentLevel
     // Load word from the array
@@ -200,7 +216,7 @@ function init(){
     setInterval(countDown, 1000);
     // check game status
     setInterval(checkStatus, 50)
-
+    
     
 }
 
@@ -229,6 +245,7 @@ function startMatch(){
 function matchWords(){
     if(wordInputs.value.toLowerCase() === currentWord.innerHTML){
         message.innerHTML = 'Correct!!!'
+        
         return true;
     }
     else{
@@ -263,12 +280,36 @@ function countDown(){
 function checkStatus(){
     if(!isPlaying && time === 0){
         message.innerHTML = 'Game Over!!!'
-        Swal.fire(
-            'Game Over!'
-          )
         score =-1
+        
     }
 }
+
+
+
+function showGameOver(){
+    if(!isPlaying && time === 0){
+        Swal.fire({
+            title: 'Oops.. Game Over',
+            text: `Your Score Is ${scoreDisplay.innerHTML}`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Restart'
+          }).then((result) => {
+            if (result.value) {
+              window.location.reload()
+            }
+          })
+        clearInterval(overMessage)
+    }
+    else if(matchWords){
+        
+    }
+}
+overMessage = setInterval(showGameOver, 1000)
+
 
 
 // levelOption.addEventListener('click', () => {
