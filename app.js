@@ -15,7 +15,7 @@ const currentLevel = levels.easy;
 
 let time = currentLevel;
 let score = 0;
-let isPlaying;
+let isPlaying = true;
 let overMessage;
 
 // DOM Elements
@@ -25,7 +25,10 @@ const scoreDisplay = document.querySelector('#score');
 const timeDisplay = document.querySelector('#time-left');
 const message = document.querySelector('#message');
 const seconds = document.querySelector('#time');
+const restartBtn = document.querySelector('#restart-btn')
 // let levelOption = document.querySelectorAll('#levels a')
+
+restartBtn.style.display = 'none'
 
 // Array Of Words for the game
 const words = [
@@ -200,12 +203,14 @@ function startGame(){
         confirmButtonText: 'START'
       }).then((result) => {
         if (result.value) {
-          init()
+            isPlaying = true;
+            init()
         }
       })
 }
 // Initialize game
 function init(){
+    // console.log(isPlaying)
     // Show number of seconds in UI
     seconds.innerHTML = currentLevel
     // Load word from the array
@@ -215,7 +220,7 @@ function init(){
     // call countdown every second
     setInterval(countDown, 1000);
     // check game status
-    setInterval(checkStatus, 50)
+    let statusChecking = setInterval(checkStatus, 50)
     
     
 }
@@ -223,12 +228,13 @@ function init(){
 
 // start matching function
 function startMatch(){
-    if(matchWords()){
-        isPlaying = true;
-        time = currentLevel + 1;
-        showWord(words);
-        wordInputs.value = '';
-        score++;
+    if(isPlaying){
+        if(matchWords()){
+            time = currentLevel + 1;
+            showWord(words);
+            wordInputs.value = '';
+            score++;
+        }
     }
 
     // if the score is negative one display the score is zero
@@ -245,7 +251,6 @@ function startMatch(){
 function matchWords(){
     if(wordInputs.value.toLowerCase() === currentWord.innerHTML){
         message.innerHTML = 'Correct!!!'
-        
         return true;
     }
     else{
@@ -281,12 +286,12 @@ function checkStatus(){
     if(!isPlaying && time === 0){
         message.innerHTML = 'Game Over!!!'
         score =-1
-        
+        restartBtn.style.display = 'inline'
     }
 }
 
 
-
+// pop up a game over message
 function showGameOver(){
     if(!isPlaying && time === 0){
         Swal.fire({
@@ -303,12 +308,19 @@ function showGameOver(){
             }
           })
         clearInterval(overMessage)
+        // clearInterval(statusChecking)
     }
-    else if(matchWords){
+    // else if(matchWords){
         
-    }
+    // }
 }
 overMessage = setInterval(showGameOver, 1000)
+
+// restart button above the score
+restartBtn.addEventListener('click', () => {
+    restartBtn.style.display = 'none'
+    window.location.reload()
+})
 
 
 
