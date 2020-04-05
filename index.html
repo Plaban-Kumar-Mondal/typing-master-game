@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <!-- BootStrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Extra CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Share Button Script -->
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5e88faffb160bc0019e60533&product=inline-share-buttons" async="async"></script>
+    <!-- Sweet Alert Script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+</head>
+<body  class="bg-warning text-white">
+    
+    <div class="text-center p-4 dark-yellow">
+        <h1 class="display-3">
+            Typing Master
+        </h1>
+    </div>
+    <div class="container text-center p-2">
+        <p class="lead">Type the given word in <span id="time" class="text-dark m-2"><strong>5</strong></span> seconds</p>
+        <h2 class="display-2 m-3" id="current-word"></h2>
+        <input type="text" class="form-control form-control-lg" placeholder="Start typing..." id="word-input" autofocus>
+        <h4 class="mt-3" id="message"></h4>
+
+        <div class="mt-5">
+            <!-- <div class="dropdown mb-5">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Select Level
+                </button>
+                <div class="dropdown-menu" id="levels" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Easy</a>
+                  <a class="dropdown-item" href="#">Medium</a>
+                  <a class="dropdown-item" href="#">Hard</a>
+                </div>
+            </div> -->
+
+            <h3>
+                Time Left:
+                <span id="time-left">0</span>
+            </h3>
+
+            <h3>
+                Score:
+                <span id="score">0</span><div class="sharethis-inline-share-buttons mt-2"></div>
+            </h3>
+        </div>
+
+        <div class="mt-5">
+            <div class="card">
+                <div class="card-body dark-yellow">
+                    <h5>Instruction</h5>
+                    <p>Type the each given word in the given amount of seconds to score. To play again, just type the current word. Your score will reset</p>
+                    <br>
+                    <p><strong>Note:</strong>I didn't choose these words manually, these words are from a random word generator website. So if you find any kind of disturbing word here in the game please inform me. And thanks for playing this game.</p>
+                    <footer class="blockquote-footer text-white">Greetings from Plaban(developer)</footer>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- linking javascript files -->
+    <script src="app.js"></script>
+
+    <!-- Javascript files for BOOTSTRAP -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>\
+    <script src="sweetalert2/dist/sweetalert2.all.min.js"></script>
+</body>
+</html>
